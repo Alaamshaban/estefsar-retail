@@ -1,0 +1,25 @@
+
+.flex-container{
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    .FormCell {
+        margin: 10px;
+        width: 100%;
+        > mat-form-field {
+          width: 100%;
+        }
+      }
+}
+.forget-pass-link{
+    color: #8DCBE8;
+    text-decoration: underline;
+    text-align: end;
+    margin-top: 20px;
+}
+.mat-dialog-actions{
+    padding: 30px 0;
+    button{
+        width: 100%;
+    }
+}

@@ -1,0 +1,43 @@
+
+    <div class="search-section">
+        <img src="assets/Group 2214.svg" class="banner" loading="lazy" />
+        <div class="search-card">
+            <mat-card >
+                <form class="search-widget-card" [formGroup]="searchForm">
+                    <mat-form-field class="formField" appearance="outline" id="type">
+                        <mat-label>Type</mat-label>
+                        <mat-select formControlName="type">
+                            <mat-option *ngFor="let type of types$ | async" [value]="type.id">
+                                {{type.name}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+            
+            
+            
+                    <mat-form-field id="dates" class="example-full-width" appearance="outline">
+                        <mat-label>start date</mat-label>
+                        <input matInput [matDatepicker]="checkin" formControlName="start_date">
+                        <mat-datepicker-toggle matSuffix [for]="checkin">
+                            <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+                        </mat-datepicker-toggle>
+                        <mat-datepicker #checkin></mat-datepicker>
+                    </mat-form-field>
+            
+            
+                    <mat-form-field id="category" class="formField" appearance="outline">
+                        <mat-label>Category</mat-label>
+                        <mat-select formControlName="category">
+                            <mat-option *ngFor="let category of categories$ | async" [value]="category.id">
+                                {{category.name}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+            
+                    <button class="update-btn CN_button" mat-raised-button color="primary" (click)="search()">Update Search</button>
+                </form>
+            </mat-card>
+        </div>
+    </div>
+
+
+
+

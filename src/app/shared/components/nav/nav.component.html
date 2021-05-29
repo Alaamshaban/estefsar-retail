@@ -1,0 +1,22 @@
+<mat-toolbar>
+<img src="assets/Group 1.svg"/>
+    <span class="example-spacer"></span>
+    <button mat-button>
+        <a [routerLink]="['/home']">
+            Home
+        </a></button>
+    <button mat-button>
+        <a [routerLink]="['/aboutus']">
+            About us</a></button>
+    <button mat-button>
+        <a [routerLink]="['/products']" [matMenuTriggerFor]="menu">Products</a></button>
+    <button mat-button>
+        <a [routerLink]="['/news']">News</a></button>
+    <button mat-button (click)="login()">Login</button>
+    <button mat-raised-button color="primary">Book a Demo</button>
+</mat-toolbar>
+
+
+<mat-menu #menu="matMenu">
+<div></div>
+</mat-menu>

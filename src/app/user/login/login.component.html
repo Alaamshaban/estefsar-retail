@@ -1,0 +1,29 @@
+<div class="logo">
+    <img src="assets/Group 1.svg" />
+</div>
+
+<form [formGroup]="loginForm">
+    <div class="flex-container">
+        <div class="FormCell">
+            <mat-form-field>
+                <input matInput type="email" formControlName="email" placeholder="Email">
+                <mat-error *ngIf="f.email.hasError('required') && (f.email.dirty || f.email.touched)">
+                    Field is required.
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <div class="FormCell">
+            <mat-form-field>
+                <input matInput type="text" formControlName="password" placeholder="Password">
+                <mat-error *ngIf="f.password.hasError('required') && (f.password.dirty || f.password.touched)">
+                    Field is required.
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <button mat-raised-button color="primary">Log In</button>
+        <a class="forget-pass-link">Forget Password</a>
+        <div mat-dialog-actions>
+            <button mat-stroked-button color="primary" (click)="signUp()">Create new account</button>
+        </div>
+    </div>
+</form>

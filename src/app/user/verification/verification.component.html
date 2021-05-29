@@ -1,0 +1,31 @@
+
+<div class="half-form">
+    <div class="form">
+        <form [formGroup]="verificationForm">
+            <div class="flex-container">
+                <div class="logo">
+                    <img src="assets/Group 1.svg" />
+                </div>
+                <div class="text">
+                    <h1>
+                        Verification Code
+                    </h1>
+                    <p>
+                        We sent you a SMS on your phone, please enter your <br/> verification code
+                    </p>
+                </div>
+
+                <div class="FormCell">
+                    <mat-form-field>
+                        <input matInput type="text" formControlName="code" placeholder="Verification code">
+                <mat-error *ngIf="f.code.hasError('required') && (f.code.dirty || f.code.touched)"></mat-error>
+                    </mat-form-field>
+                </div>
+                <button mat-raised-button color="primary" (click)="verify()">Verify</button>
+            </div>
+        </form>
+    </div>
+    <div class="bg-img">
+        
+    </div>
+</div>
