@@ -1,6 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { BaseURL } from '../base-url';
 import { Question } from '../models/question.model';
 
@@ -18,6 +19,6 @@ export class QuestionsService {
         params = params.append(`filter{${key}}`, filterValues[key]);
       }
     });
-    return this.http.get<Question[]>(`${this.url}/forms/questions/`, { params });
+    return this.http.get<Question[]>(`${this.url}/forms/questions/`, { params }).pipe(map(results => results['questions']));
   }
 }
