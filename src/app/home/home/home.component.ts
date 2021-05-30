@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Category } from 'src/app/shared/models/category.model';
 import { CategoriesService } from 'src/app/shared/services/categories.service';
+import { QuestionsService } from 'src/app/shared/services/questions.service';
 
 @Component({
   selector: 'app-home',
@@ -14,7 +15,9 @@ export class HomeComponent implements OnInit {
   categories$: Observable<Category[]>;
   types = ['Family', 'Individual'];
 
-  constructor(private categoriesService: CategoriesService) { }
+  constructor(
+    private questionService: QuestionsService,
+    private categoriesService: CategoriesService) { }
 
   ngOnInit(): void {
     this.getCategories();
@@ -25,6 +28,12 @@ export class HomeComponent implements OnInit {
       .pipe(map(
         (result: object) => result['policy_categories']
       ));
+  }
+
+  search(filterValues): void {
+    this.questionService.getQuestions(filterValues).subscribe(res => {
+      console.log(res);
+    });
   }
 
 }

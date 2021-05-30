@@ -1,4 +1,4 @@
 
 <div class="page">
-    <app-search [categories$]="categories$" [types]="types"></app-search>
+    <app-search [categories$]="categories$" [types]="types" (updateSearch)="search($event)"></app-search>
 </div>

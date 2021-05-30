@@ -21,7 +21,7 @@
             
                     <mat-form-field id="dates" class="example-full-width" appearance="outline">
                         <mat-label>start date</mat-label>
-                        <input matInput [matDatepicker]="checkin" formControlName="start_date">
+                        <input matInput readonly [matDatepicker]="checkin" formControlName="created_at">
                         <mat-datepicker-toggle matSuffix [for]="checkin">
                             <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
                         </mat-datepicker-toggle>
@@ -31,7 +31,7 @@
             
                     <mat-form-field id="category" class="formField" appearance="outline">
                         <mat-label>Category</mat-label>
-                        <mat-select formControlName="category">
+                        <mat-select formControlName="policy_category">
                             <mat-option *ngFor="let category of categories$ | async" [value]="category.id">
                                 {{category.name}}</mat-option>
                         </mat-select>
