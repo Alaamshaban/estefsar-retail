@@ -1,5 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { Category } from '../../models/category.model';
 
 @Component({
   selector: 'app-search',
@@ -9,8 +11,8 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 export class SearchComponent implements OnInit {
 
   searchForm: FormGroup;
-  @Input() categories$;
-  @Input() types$;
+  @Input() categories$: Observable<Category>;
+  @Input() types;
   @Output() updateSearch = new EventEmitter();
 
   constructor(private fb: FormBuilder) { }

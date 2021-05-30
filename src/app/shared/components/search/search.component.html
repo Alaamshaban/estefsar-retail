@@ -1,14 +1,19 @@
 
     <div class="search-section">
         <img src="assets/Group 2214.svg" class="banner" loading="lazy" />
+       <div class="text">
+      <h1>
+        The only way to discover the <br/>limits of the possible is to<br/> <span class="uppercase">go beyond</span><br/> them into the impossible.
+      </h1>  
+       </div>
         <div class="search-card">
             <mat-card >
                 <form class="search-widget-card" [formGroup]="searchForm">
                     <mat-form-field class="formField" appearance="outline" id="type">
                         <mat-label>Type</mat-label>
                         <mat-select formControlName="type">
-                            <mat-option *ngFor="let type of types$ | async" [value]="type.id">
-                                {{type.name}}</mat-option>
+                            <mat-option *ngFor="let type of types" [value]="type">
+                                {{type}}</mat-option>
                         </mat-select>
                     </mat-form-field>
             

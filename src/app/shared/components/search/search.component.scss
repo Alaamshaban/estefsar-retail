@@ -29,7 +29,27 @@ $desktop: 1280px;
     border-radius: 0px 10px 10px 0px;
 }
 
-
+.search-card{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    top: 50%;
+    left: 20%;
+  }
+  .text{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    top: 30%;
+    right: 20%;
+    color: #707070;
+    .uppercase{
+        text-transform:uppercase;
+        color:#524F9C
+    }
+  }
 
  
   @media only screen and (min-width: $desktop) {
@@ -39,17 +59,17 @@ $desktop: 1280px;
         text-align: center;
         color: white;
         .banner{
-            width: 100vw;
-            height: 70vh;
-            object-fit: fill;
+            width: 60vw;
+            object-fit: cover;
             opacity: 0.8;
           }
           .search-card{
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            position: absolute;
             top: 78%;
+            left: 0%;
+          }
+          .text{
+            top: 20%;
+            right: 50%;
           }
       }
   }
