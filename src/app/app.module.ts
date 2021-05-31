@@ -7,6 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from './shared/shared.module';
 import { NgxsModule } from '@ngxs/store';
 import { UserState } from './store/user/user.state';
+import { QuestionsState } from './store/questions/question.state';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,9 @@ import { UserState } from './store/user/user.state';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    NgxsModule.forRoot([UserState]),
+    NgxsModule.forRoot([
+      QuestionsState,
+      UserState]),
     SharedModule
   ],
   providers: [],
