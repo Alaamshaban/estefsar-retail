@@ -8,10 +8,10 @@ import { Question } from '../models/question.model';
 export class QuestionControlService {
 
   constructor() { }
-  toFormGroup(questions: Question[]) {
+  toFormGroup(questions) {
     const group: any = {};
-
     questions.forEach(question => {
+      question.title = question.title.split(' ').join('_');
       group[question.title] = question.mandatory ? new FormControl('', Validators.required)
         : new FormControl('');
     });

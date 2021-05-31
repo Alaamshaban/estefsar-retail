@@ -2,3 +2,6 @@
 <div class="page">
     <app-search [categories$]="categories$" [types]="types" (updateSearch)="search($event)"></app-search>
 </div>
+<ng-container *ngIf="groups$ | async">
+    <app-dynamic-form [groups$]="groups$"></app-dynamic-form>
+</ng-container>

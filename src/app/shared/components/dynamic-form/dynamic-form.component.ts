@@ -1,7 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
-import { Question } from '../../models/question.model';
-import { QuestionControlService } from '../../services/question-control.service';
+import { Observable } from 'rxjs';
+import {QuestionGroup } from '../../models/question.model';
 
 
 @Component({
@@ -11,18 +10,12 @@ import { QuestionControlService } from '../../services/question-control.service'
 })
 export class DynamicFormComponent implements OnInit {
 
-  @Input() questions: Question[] | null = [];
-  form!: FormGroup;
+  @Input() groups$: Observable<QuestionGroup[]>;
   payLoad = '';
 
-  constructor(private qcs: QuestionControlService) {}
+  constructor() { }
 
   ngOnInit(): void {
-    this.form = this.qcs.toFormGroup(this.questions as Question[]);
-  }
-
-  onSubmit(): void {
-    this.payLoad = JSON.stringify(this.form.getRawValue());
   }
 
 }

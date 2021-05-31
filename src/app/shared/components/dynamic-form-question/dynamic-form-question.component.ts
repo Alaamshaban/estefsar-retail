@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Question } from '../../models/question.model';
 
@@ -7,15 +7,15 @@ import { Question } from '../../models/question.model';
   templateUrl: './dynamic-form-question.component.html',
   styleUrls: ['./dynamic-form-question.component.scss']
 })
-export class DynamicFormQuestionComponent implements OnInit {
+export class DynamicFormQuestionComponent {
 
   @Input() question: Question;
   @Input() form!: FormGroup;
-  get isValid() { return this.form.controls[this.question.title].valid; }
 
   constructor() { }
 
-  ngOnInit(): void {
+  getChoices(choises: string): string[] {
+    return choises.split(',');
   }
 
 }

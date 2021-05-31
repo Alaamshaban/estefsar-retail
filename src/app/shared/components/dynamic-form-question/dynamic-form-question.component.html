@@ -1,6 +1,5 @@
-<div [formGroup]="form">
 
-    <ng-container [ngSwitch]="question.type">
+    <ng-container [formGroup]="form" *ngIf="form" [ngSwitch]="question.type">
         <!--date field-->
         <mat-form-field *ngSwitchCase="'date'">
             <mat-label>{{ question.description }}</mat-label>
@@ -11,18 +10,10 @@
             <mat-datepicker #myDatepicker></mat-datepicker>
         </mat-form-field>
 
-        <!--text field-->
-        <ng-container *ngSwitchCase="'text'">
-            <mat-label>{{ question?.description }}</mat-label>
-            <input matInput [id]="question.title" [formControlName]="question.title" [required]="question.mandatory" [type]="question.type" />
-            <!-- <mat-error *ngIf="f[question.name].hasError('required') && (f[question.name].dirty || f[question.name].touched)">
-            this field is required</mat-error> -->
-        </ng-container>
-
         <!--number field-->
         <ng-container *ngSwitchCase="'number'">
             <mat-label>{{ question?.description }}</mat-label>
-            <input [formControlName]="question.title" [id]="question.title" [type]="question.type">
+            <input matInput [formControlName]="question.title" [id]="question.title" [type]="question.type">
             <!-- <mat-error *ngIf="f[question.name].hasError('required') && (f[question.name].dirty || f[question.name].touched)">
             this field is required</mat-error> -->
         </ng-container>
@@ -32,7 +23,7 @@
             <mat-form-field>
                 <mat-label>{{ question.description }}</mat-label>
                 <mat-select panelClass="SelectClass" disableOptionCentering='true' [required]="question.mandatory" [formControlName]="question.title">
-                    <mat-option *ngFor="let c of question?.choices" [value]="c">
+                    <mat-option *ngFor="let c of getChoices(question?.choices)" [value]="c">
                         {{ c }}
                     </mat-option>
                 </mat-select>
@@ -58,13 +49,22 @@
 
         <!--file-->
         <ng-conatiner *ngSwitchCase="'file'">
-            <mat-form-field>
                 <mat-label class="fileContainer">{{ question.description }}</mat-label>
-                <input type="file" id="file" [formControlName]="question.title" />
-            </mat-form-field>
+                <input  type="file" id="file" [formControlName]="question.title" />
         </ng-conatiner>
+
+        <ng-container *ngSwitchDefault>
+
+            <mat-form-field>
+                <mat-label>{{ question?.description }}</mat-label>
+                <input matInput [id]="question.title" [formControlName]="question.title" [required]="question.mandatory" [type]="question.type" />
+                <!-- <mat-error *ngIf="f[question.name].hasError('required') && (f[question.name].dirty || f[question.name].touched)">
+        this field is required</mat-error> -->
+            </mat-form-field>
+        </ng-container>
+
 
     </ng-container>
 
-    <div class="errorMessage" *ngIf="!isValid">{{question.description}} is required</div>
-</div>
+
+    <!-- <div class="errorMessage" *ngIf="!isValid">{{question.description}} is required</div> -->

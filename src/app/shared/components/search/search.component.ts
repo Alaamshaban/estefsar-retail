@@ -38,7 +38,6 @@ export class SearchComponent implements OnInit {
         created_at: moment(this.searchForm.get('created_at').value).format('YYYY-MM-DD HH:mm:ss')
       });
     }
-    console.log(this.searchForm.value);
     this.updateSearch.next({ ...this.searchForm.value });
   }
 

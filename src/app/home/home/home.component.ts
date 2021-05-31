@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Category } from 'src/app/shared/models/category.model';
+import { Question, QuestionGroup, QuestionsResponseModel } from 'src/app/shared/models/question.model';
 import { CategoriesService } from 'src/app/shared/services/categories.service';
 import { QuestionsService } from 'src/app/shared/services/questions.service';
 
@@ -14,6 +15,7 @@ export class HomeComponent implements OnInit {
 
   categories$: Observable<Category[]>;
   types = ['Family', 'Individual'];
+  groups$: Observable<QuestionGroup[]>;
 
   constructor(
     private questionService: QuestionsService,
@@ -31,9 +33,7 @@ export class HomeComponent implements OnInit {
   }
 
   search(filterValues): void {
-    this.questionService.getQuestions(filterValues).subscribe(res => {
-      console.log(res);
-    });
+    this.groups$ = this.questionService.getQuestionGroups(filterValues);
   }
 
 }

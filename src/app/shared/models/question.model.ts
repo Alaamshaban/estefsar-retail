@@ -1,3 +1,5 @@
+import { FormGroup } from "@angular/forms";
+
 export interface Question {
     id: string;
     field_sets: string;
@@ -21,11 +23,19 @@ export interface Question {
     policy_category: string[];
 }
 
+export interface QuestionGroup {
+    [index: number]: Question[];
+    form: FormGroup;
+}
+
+export interface QuestionsResponseModel {
+    questions: QuestionGroup[];
+}
 export interface FieldSet {
     title: string;
 }
 
-export interface SubQuestion{
+export interface SubQuestion {
     id: string;
     created_at: string;
     modified_at: string;
