@@ -22,7 +22,7 @@ export class QuestionsService {
         params = params.append(`filter{${key}}`, filterValues[key]);
       }
     });
-    return this.http.get<QuestionsResponseModel>(`${this.url}/forms/questions/`, { params }).
+    return this.http.get<any>(`${this.url}/forms/questions/`, { params }).
       pipe(map(res =>
         res.questions.map(group => {
           return { questions: group, form: this.qcs.toFormGroup(group) };

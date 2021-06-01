@@ -1,17 +1,8 @@
-
-    <!-- <form (ngSubmit)="onSubmit()" [formGroup]="form"> -->
-      <ng-conatiner *ngIf="groups$">
-        <ng-container *ngFor="let group of groups$ | async">
-          <div *ngFor="let question of group.questions" class="form-row">
-              <app-dynamic-form-question [question]="question" [form]="group.form"></app-dynamic-form-question>
-          </div>
+<ng-conatiner *ngIf="groups$">
+    <form [formGroup]="dynamicFormGroup">
+        <ng-container *ngFor="let group of groups$ | async;let i=index">
+            <app-dynamic-form-question [group]="group" [form]="group.form"></app-dynamic-form-question>
         </ng-container>
-      </ng-conatiner>
-
-
-    <!-- </form> -->
-  
-    <div *ngIf="payLoad" class="form-row">
-      <strong>Saved the following values</strong><br>{{payLoad}}
-    </div>
- 
+        <button mat-raised-button color="primary" (click)="submit()">Get Offers</button>
+    </form>
+</ng-conatiner>

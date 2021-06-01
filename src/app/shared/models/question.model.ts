@@ -1,10 +1,10 @@
-import { FormGroup } from "@angular/forms";
+import { FormGroup } from '@angular/forms';
 
 export interface Question {
     id: string;
-    field_sets: string;
+    field_sets: FieldSet[];
     sub_questions: SubQuestion[];
-    field_set: FieldSet[];
+    field_set: string;
     created_at: string;
     modified_at: string;
     title: string;
@@ -24,7 +24,7 @@ export interface Question {
 }
 
 export interface QuestionGroup {
-    [index: number]: Question[];
+    questions: Question[];
     form: FormGroup;
 }
 
@@ -53,6 +53,6 @@ export interface SubQuestion {
     allow_upload: boolean;
     multiple_answers: boolean;
     policy_category: string[];
-    field_sets: string[];
+    field_sets: FieldSet[];
 
 }

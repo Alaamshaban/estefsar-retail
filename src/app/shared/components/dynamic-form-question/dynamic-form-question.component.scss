@@ -9,3 +9,24 @@
 {
     padding:.4375em 0;
 }
+.form-card-container{
+    margin: 20px;
+    .form-container{
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        .formCell{
+            width: 24%;
+            margin-right: 10px;
+            margin-bottom: 10px !important;
+            align-self: baseline;
+            flex: 1 0 21%;
+            max-width: 25%;
+        }
+        mat-form-field{
+            width: 100%;
+        }
+    }
+}

@@ -1,70 +1,76 @@
+<h1>{{GroupTitle}}</h1>
+<mat-card class="form-card-container">
+    <div [formGroup]="group.form" class="form-container">
+        <ng-container *ngFor="let question of group.questions">
+            <ng-container [ngSwitch]="question.type">
+                <!--date field-->
+                <div class="formCell" *ngSwitchCase="'date'">
+                    <mat-form-field>
+                        <mat-label>{{ question.description }}</mat-label>
+                        <input matInput [formControlName]="question?.title" [required]="question.mandatory" [matDatepicker]="myDatepicker" />
+                        <mat-error *ngIf="f[question.title].hasError('required') && (f[question.title].dirty || f[question.title].touched)">
+                            this field is required</mat-error>
+                        <mat-datepicker-toggle matSuffix [for]="myDatepicker" style="color: #1490C0"></mat-datepicker-toggle>
+                        <mat-datepicker #myDatepicker></mat-datepicker>
+                    </mat-form-field>
+                </div>
 
-    <ng-container [formGroup]="form" *ngIf="form" [ngSwitch]="question.type">
-        <!--date field-->
-        <mat-form-field *ngSwitchCase="'date'">
-            <mat-label>{{ question.description }}</mat-label>
-            <input matInput [formControlName]="question?.title" [matDatepicker]="myDatepicker" />
-            <!-- <mat-error *ngIf="f[question.title].hasError('required') && (f[question.title].dirty || f[question.title].touched)">
-                this field is required</mat-error> -->
-            <mat-datepicker-toggle matSuffix [for]="myDatepicker" style="color: #1490C0"></mat-datepicker-toggle>
-            <mat-datepicker #myDatepicker></mat-datepicker>
-        </mat-form-field>
+                <!--number field-->
+                <div class="formCell" *ngSwitchCase="'number'">
+                    <mat-form-field>
+                        <mat-label>{{ question?.description }}</mat-label>
+                        <input matInput [formControlName]="question.title" [required]="question.mandatory" [id]="question.title" type="number">
+                        <mat-error *ngIf="f[question.title].hasError('required') && (f[question.title].dirty || f[question.title].touched)">
+                            this field is required</mat-error>
+                    </mat-form-field>
+                </div>
 
-        <!--number field-->
-        <ng-container *ngSwitchCase="'number'">
-            <mat-label>{{ question?.description }}</mat-label>
-            <input matInput [formControlName]="question.title" [id]="question.title" [type]="question.type">
-            <!-- <mat-error *ngIf="f[question.name].hasError('required') && (f[question.name].dirty || f[question.name].touched)">
-            this field is required</mat-error> -->
+                <!--dropdown field-->
+                <div class="formCell" *ngSwitchCase="'choices'">
+                    <mat-form-field>
+                        <mat-label>{{ question.description }}</mat-label>
+                        <mat-select panelClass="SelectClass" disableOptionCentering='true' [required]="question.mandatory" [formControlName]="question.title">
+                            <mat-option *ngFor="let c of getChoices(question?.choices)" [value]="c">
+                                {{ c }}
+                            </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="f[question.title].hasError('required') && (f[question.title].dirty || f[question.title].touched)">this field is required</mat-error>
+                    </mat-form-field>
+                </div>
+
+                <!--textarea-->
+                <div class="formCell" *ngSwitchCase="'textarea'">
+                    <mat-form-field>
+                        <mat-label>{{ question.description }}</mat-label>
+                        <textarea matInput matTextareaAutosize [formControlName]="question.title" [required]="question.mandatory" rows="3" cols="2"></textarea>
+                    </mat-form-field>
+                </div>
+
+                <!--checkbox-->
+                <!-- <ng-container *ngSwitchCase="'bool'">
+                        <div class="checkbox-container">
+                            <mat-checkbox matInput class="crud_checkbox" [formControlName]="question.title" color="primary">{{ question.description }}</mat-checkbox>
+                        </div>
+                    </ng-container> -->
+
+                <!--file-->
+                <div class="formCell" *ngSwitchCase="'file'">
+                    <ng-conatiner>
+                        <mat-label class="fileContainer">{{ question.description }}</mat-label>
+                        <input type="file" id="file" [required]="question.mandatory" [formControlName]="question.title" />
+                    </ng-conatiner>
+                </div>
+
+                <div class="formCell" *ngSwitchDefault>
+                    <mat-form-field>
+                        <mat-label>{{ question?.description }}</mat-label>
+                        <input matInput [id]="question.title" [formControlName]="question.title" [required]="question.mandatory" [type]="question.type" />
+                        <mat-error *ngIf="f[question.title].hasError('required') && (f[question.title].dirty || f[question.title].touched)">
+                            this field is required</mat-error>
+                    </mat-form-field>
+                </div>
+            </ng-container>
         </ng-container>
+    </div>
 
-        <!--dropdown field-->
-        <ng-container *ngSwitchCase="'choices'">
-            <mat-form-field>
-                <mat-label>{{ question.description }}</mat-label>
-                <mat-select panelClass="SelectClass" disableOptionCentering='true' [required]="question.mandatory" [formControlName]="question.title">
-                    <mat-option *ngFor="let c of getChoices(question?.choices)" [value]="c">
-                        {{ c }}
-                    </mat-option>
-                </mat-select>
-                <!-- <mat-error *ngIf="f[question.name].hasError('required') && (f[question.name].dirty || f[question.name].touched)">this
-                    field is required</mat-error> -->
-            </mat-form-field>
-        </ng-container>
-
-        <!--textarea-->
-        <ng-container *ngSwitchCase="'textarea'">
-            <mat-form-field>
-                <mat-label>{{ question.description }}</mat-label>
-                <textarea matInput matTextareaAutosize [formControlName]="question.title" rows="3" cols="2"></textarea>
-            </mat-form-field>
-        </ng-container>
-
-        <!--checkbox-->
-        <ng-container *ngSwitchCase="'bool'">
-            <div class="checkbox-container">
-                <mat-checkbox matInput class="crud_checkbox" [formControlName]="question.title" color="primary">{{ question.description }}</mat-checkbox>
-            </div>
-        </ng-container>
-
-        <!--file-->
-        <ng-conatiner *ngSwitchCase="'file'">
-                <mat-label class="fileContainer">{{ question.description }}</mat-label>
-                <input  type="file" id="file" [formControlName]="question.title" />
-        </ng-conatiner>
-
-        <ng-container *ngSwitchDefault>
-
-            <mat-form-field>
-                <mat-label>{{ question?.description }}</mat-label>
-                <input matInput [id]="question.title" [formControlName]="question.title" [required]="question.mandatory" [type]="question.type" />
-                <!-- <mat-error *ngIf="f[question.name].hasError('required') && (f[question.name].dirty || f[question.name].touched)">
-        this field is required</mat-error> -->
-            </mat-form-field>
-        </ng-container>
-
-
-    </ng-container>
-
-
-    <!-- <div class="errorMessage" *ngIf="!isValid">{{question.description}} is required</div> -->
+</mat-card>

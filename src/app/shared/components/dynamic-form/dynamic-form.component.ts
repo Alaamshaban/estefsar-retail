@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
-import {QuestionGroup } from '../../models/question.model';
+import { QuestionGroup } from '../../models/question.model';
 
 
 @Component({
@@ -11,11 +12,26 @@ import {QuestionGroup } from '../../models/question.model';
 export class DynamicFormComponent implements OnInit {
 
   @Input() groups$: Observable<QuestionGroup[]>;
+  groups;
   payLoad = '';
+  public dynamicFormGroup: FormGroup;
 
   constructor() { }
 
   ngOnInit(): void {
+    const ctrls = {};
+    this.groups$.subscribe(groups => {
+      groups.forEach(group => {
+        ctrls[group.questions[0].field_sets[0].title] = new FormControl(group.form);
+      });
+      this.dynamicFormGroup = new FormGroup(ctrls);
+    });
   }
+
+  submit(){
+    console.log(this.dynamicFormGroup.value);
+  }
+
+
 
 }
