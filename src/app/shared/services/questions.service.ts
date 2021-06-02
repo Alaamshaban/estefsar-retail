@@ -24,7 +24,19 @@ export class QuestionsService {
     });
     return this.http.get<any>(`${this.url}/forms/questions/`, { params }).
       pipe(map(res =>
-        res.questions.map(group => {
+        res.questions.map((group) => {
+          group.forEach((q) => {
+            if (q.sub_questions.length) {
+              q.sub_questions = {
+                title: q.description,
+                questions: q.sub_questions,
+                form: this.qcs.toFormGroup(q.sub_questions)
+              };
+            }
+            else {
+              q.sub_questions = { questions: [], form: this.qcs.toFormGroup(q.sub_questions) };
+            }
+          });
           return { questions: group, form: this.qcs.toFormGroup(group) };
         })
       ));

@@ -3,7 +3,7 @@ import { FormGroup } from '@angular/forms';
 export interface Question {
     id: string;
     field_sets: FieldSet[];
-    sub_questions: SubQuestion[];
+    sub_questions: QuestionGroup;
     field_set: string;
     created_at: string;
     modified_at: string;
@@ -26,6 +26,7 @@ export interface Question {
 export interface QuestionGroup {
     questions: Question[];
     form: FormGroup;
+    title?: string;
 }
 
 export interface QuestionsResponseModel {

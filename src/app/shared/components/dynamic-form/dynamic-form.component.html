@@ -3,6 +3,8 @@
         <ng-container *ngFor="let group of groups$ | async;let i=index">
             <app-dynamic-form-question [group]="group" [form]="group.form"></app-dynamic-form-question>
         </ng-container>
-        <button mat-raised-button color="primary" (click)="submit()">Get Offers</button>
+        <div class="submit-form">
+            <button class="submit-btn" mat-raised-button color="primary" (click)="submit()">Get Offers</button>
+        </div>
     </form>
 </ng-conatiner>

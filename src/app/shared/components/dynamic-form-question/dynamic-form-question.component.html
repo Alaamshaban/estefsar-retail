@@ -61,6 +61,10 @@
                     </ng-conatiner>
                 </div>
 
+                <ng-container *ngSwitchCase="'fieldgroup'">
+                    <app-dynamic-form-question [isSubGroup]="true" style="background-color: red;" [group]="question.sub_questions"></app-dynamic-form-question>
+                </ng-container>
+
                 <div class="formCell" *ngSwitchDefault>
                     <mat-form-field>
                         <mat-label>{{ question?.description }}</mat-label>
@@ -70,6 +74,7 @@
                     </mat-form-field>
                 </div>
             </ng-container>
+
         </ng-container>
     </div>
 

@@ -23,12 +23,19 @@ export class DynamicFormComponent implements OnInit {
     this.groups$.subscribe(groups => {
       groups.forEach(group => {
         ctrls[group.questions[0].field_sets[0].title] = new FormControl(group.form);
+        group.questions.forEach(q => {
+          if (q.sub_questions.questions.length) {
+            const formCtrl = ctrls[group.questions[0].field_sets[0].title] as FormControl;
+            const fg = formCtrl.value as FormGroup;
+            fg.get(q.title).setValue(new FormControl(q.sub_questions.form));
+          }
+        });
       });
       this.dynamicFormGroup = new FormGroup(ctrls);
     });
   }
 
-  submit(){
+  submit() {
     console.log(this.dynamicFormGroup.value);
   }
 

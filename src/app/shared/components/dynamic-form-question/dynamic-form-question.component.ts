@@ -7,9 +7,10 @@ import { Question, QuestionGroup } from '../../models/question.model';
   templateUrl: './dynamic-form-question.component.html',
   styleUrls: ['./dynamic-form-question.component.scss']
 })
-export class DynamicFormQuestionComponent implements OnChanges {
+export class DynamicFormQuestionComponent  {
 
   @Input() group: QuestionGroup;
+  @Input() isSubGroup: boolean;
 
   constructor() { }
 
@@ -22,11 +23,11 @@ export class DynamicFormQuestionComponent implements OnChanges {
   }
 
   get GroupTitle(): string {
-    return this.group.questions[0].field_sets[0].title;
-  }
-
-  ngOnChanges() {
-    console.log('>>>>>>>>>>', this.group);
+    if (!this.isSubGroup) {
+      return this.group.questions[0].field_sets[0].title;
+    } else{
+      return this.group.title;
+    }
   }
 
 }
