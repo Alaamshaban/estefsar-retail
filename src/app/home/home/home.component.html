@@ -1,4 +1,13 @@
-
 <div class="page">
-    <app-search [categories$]="categories$" [types]="types" (updateSearch)="search($event)"></app-search>
+    <div class="search-section">
+        <img src="assets/Group 2214.svg" class="banner" loading="lazy" />
+        <div class="text">
+            <h1>
+                The only way to discover the <br/>limits of the possible is to<br/> <span class="uppercase">go beyond</span><br/> them into the impossible.
+            </h1>
+        </div>
+        <div class="search-card">
+            <app-search [categories$]="categories$" [types]="types" (updateSearch)="search($event)"></app-search>
+        </div>
+    </div>
 </div>
