@@ -1,4 +1,4 @@
-<h1>{{GroupTitle}}</h1>
+<div class="question-header">{{GroupTitle}}</div>
 <mat-card class="form-card-container">
     <div [formGroup]="group.form" class="form-container">
         <ng-container *ngFor="let question of group.questions">
@@ -55,14 +55,14 @@
 
                 <!--file-->
                 <div class="formCell" *ngSwitchCase="'file'">
-                    <ng-conatiner>
-                        <mat-label class="fileContainer">{{ question.description }}</mat-label>
-                        <input type="file" id="file" [required]="question.mandatory" [formControlName]="question.title" />
-                    </ng-conatiner>
+                    <div class="file-container">
+                        <mat-label>{{ question.description }}</mat-label>
+                        <input type="file" id="file" (change)="onFileChange($event,question.title)" class="custom-file-input" [required]="question.mandatory" [formControlName]="question.title" />
+                    </div>
                 </div>
 
                 <ng-container *ngSwitchCase="'fieldgroup'">
-                    <app-dynamic-form-question [isSubGroup]="true" style="background-color: red;" [group]="question.sub_questions"></app-dynamic-form-question>
+                    <app-dynamic-form-question [isSubGroup]="true" [group]="question.sub_questions"></app-dynamic-form-question>
                 </ng-container>
 
                 <div class="formCell" *ngSwitchDefault>

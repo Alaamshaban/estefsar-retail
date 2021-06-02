@@ -1,3 +1,11 @@
-<ng-container *ngIf="groups$ | async">
-    <app-dynamic-form [groups$]="groups$"></app-dynamic-form>
-</ng-container>
+<div class="page">
+    <div class="search-section">
+        <img src="assets/carousel-three.jpg" class="banner" loading="lazy" />
+        <div class="search-card">
+            <app-search class="app-search" [categories$]="categories$" [types]="types" (updateSearch)="search($event)"></app-search>
+        </div>
+    </div>
+    <div *ngIf="groups$ | async" class="dynamic-form-conrainer">
+        <app-dynamic-form [groups$]="groups$"></app-dynamic-form>
+    </div>
+</div>
