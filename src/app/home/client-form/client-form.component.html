@@ -1,11 +1,13 @@
-<div class="page">
-    <div class="search-section">
-        <img src="assets/carousel-three.jpg" class="banner" loading="lazy" />
-        <div class="search-card">
-            <app-search class="app-search" [categories$]="categories$" [types]="types" (updateSearch)="search($event)"></app-search>
+<ng-container *ngIf="!loading;else loader">
+    <div class="page" *ngIf="groups$ | async">
+        <app-search-section  [page]="'clientForm'" (searchValues)="search($event)" [searchParams]="searchParameters"></app-search-section>
+        <div class="dynamic-form-conrainer">
+            <app-dynamic-form class="app-dynamic" [groups$]="groups$" (ansewers)="getOffers($event)"></app-dynamic-form>
         </div>
     </div>
-    <div *ngIf="groups$ | async" class="dynamic-form-conrainer">
-        <app-dynamic-form [groups$]="groups$"></app-dynamic-form>
+</ng-container>
+<ng-template #loader>
+    <div class="grid-spinner">
+        <mat-spinner></mat-spinner>
     </div>
-</div>
+</ng-template>

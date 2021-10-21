@@ -7,4 +7,14 @@ h1 {
   letter-spacing: -0.8px;
   color: #231f20;
 }
+.auth-image{
+  width: 58vw;
+  height: 90vh;
+}
+$desktop: 1280px;
+@media only screen and (min-width: $desktop) {
+  .auth-image{
+    width: 49vw;
+  }
+}
 

@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { BaseURL } from '../base-url';
-import { Question, QuestionGroup, QuestionsResponseModel } from '../models/question.model';
+import { QuestionGroup } from '../models/question.model';
 import { QuestionControlService } from './question-control.service';
 
 @Injectable({
@@ -25,16 +25,15 @@ export class QuestionsService {
     return this.http.get<any>(`${this.url}/forms/questions/`, { params }).
       pipe(map(res =>
         res.questions.map((group) => {
-          group.forEach((q) => {
-            if (q.sub_questions.length) {
-              q.sub_questions = {
-                title: q.description,
-                questions: q.sub_questions,
-                form: this.qcs.toFormGroup(q.sub_questions)
+          group.map((q) => {
+            if (q.sub_questions.length > 0) {
+              q.new_sub_questions = {
+                title: q.title,
+                form: q.multiple_answers ? this.qcs.toformArray(q) : this.qcs.toFormControl(q),
+                questions: q.sub_questions
               };
-            }
-            else {
-              q.sub_questions = { questions: [], form: this.qcs.toFormGroup(q.sub_questions) };
+            } else {
+              q.new_sub_questions = { form: this.qcs.toFormControl(q) };
             }
           });
           return { questions: group, form: this.qcs.toFormGroup(group) };

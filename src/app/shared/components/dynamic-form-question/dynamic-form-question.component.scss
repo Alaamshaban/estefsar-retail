@@ -1,14 +1,19 @@
 .checkbox-container
 {
-    width: 100%;
+    width: 50%;
     height: 100%;
     display: flex;
     align-items: center;
+    margin: 20px 0;
+}
+.sub-group-header{
+    display: flex;
+    justify-content: space-between;
+    margin: 20px;
 }
 .question-header{
     color:#7A78B2;
     font-size: 16px;
-    margin: 20px;
 }
 ::ng-deep.mat-checkbox-layout
 {
@@ -37,9 +42,18 @@
     top: 0;
     cursor: pointer;
 }
-
-.form-card-container{
-    width: 85%;
+.subgroup-form-card-container{
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    .clickable{
+        cursor: pointer;
+        color: #EF9393;
+    }
+}
+.normal-form-card-container{
+    width: 100%;
     .form-container{
         display: flex;
         flex-direction: row;
@@ -47,15 +61,39 @@
         justify-content: flex-start;
         flex-wrap: wrap;
         .formCell{
-            width: 24%;
+            width: 100%;
             margin-right: 10px;
             margin-bottom: 10px !important;
             align-self: baseline;
-            flex: 1 0 21%;
-            max-width: 25%;
+            flex: 1 0 100%;
+            max-width: 100%;
         }
         mat-form-field{
             width: 100%;
+        }
+    }
+}
+$desktop: 1280px;
+@media only screen and (min-width: $desktop) {
+    .normal-form-card-container{
+        width: 100%;
+        .form-container{
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+            justify-content: flex-start;
+            flex-wrap: wrap;
+            .formCell{
+                width: 24%;
+                margin-right: 10px;
+                margin-bottom: 10px !important;
+                align-self: baseline;
+                flex: 1 0 21%;
+                max-width: 35%;
+            }
+            mat-form-field{
+                width: 100%;
+            }
         }
     }
 }

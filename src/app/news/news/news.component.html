@@ -1,1 +1,33 @@
-<p>news works!</p>
+<ng-container *ngIf="news?.length>0;else loading">
+    <div class="page">
+        <div class="card-container">
+            <ng-container *ngFor="let n of news">
+                <mat-card class="news-card">
+                    <ng-container *ngIf="n.image;else defaultImg">
+                        <img mat-card-image [src]="n.image">
+                    </ng-container>
+                    <ng-template #defaultImg>
+                        <img src="assets/News/card-img.png" />
+                    </ng-template>
+                    <mat-card-header>
+                        <mat-card-title>{{n.title}}</mat-card-title>
+                        <mat-card-subtitle>{{n.created_at | date: 'dd/MM/yyyy'}}</mat-card-subtitle>
+                    </mat-card-header>
+                    <mat-card-content>
+                        <p>
+                            {{n.description}}
+                        </p>
+                    </mat-card-content>
+                </mat-card>
+            </ng-container>
+
+        </div>
+        <div class="news-letter">
+            <app-newsletterform [news]="[news[0],news[1]]"></app-newsletterform>
+        </div>
+    </div>
+    <app-footer></app-footer>
+</ng-container>
+<ng-template #loading>
+    <mat-spinner class="grid-spinner"></mat-spinner>
+</ng-template>

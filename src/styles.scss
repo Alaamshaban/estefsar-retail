@@ -1,5 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
 $desktop: 1280px;
+* {
+  font-family:Prompt /* Replace with your custom font */, sans-serif !important; 
+  /* Add !important to overwrite all elements */
+}
 html,
 body {
   margin: 0;
@@ -8,7 +12,6 @@ body {
 }
 body {
   min-height: 100vh;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
   color: #221f28;
   display: flex;
   background-color: #F5F5F5;
@@ -49,6 +52,12 @@ body {
     }
   }
 }
+.btn-link{
+  text-decoration: none;
+}
 @media only screen and (min-width: $desktop) {
   body{display: block;}
+  .page{
+    width: 100%;
+  }
 }

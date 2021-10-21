@@ -1,0 +1,42 @@
+<div class="page">
+    <app-search-section [page]="'offers'" (searchValues)="search($event)"></app-search-section>
+    <div class="card-container">
+        <div class="not-found" *ngIf="(offers$ | async)?.length===0;else offers">
+            <img src="assets/not-found.svg" />
+            <p>Sorry , No match found</p>
+        </div>
+        <ng-template #offers>
+            <mat-card class="offer-card" *ngFor="let generated_offer of offers$ | async">
+                <mat-card-header>
+                    <div mat-card-avatar>
+                        <img class="offer-card-image" [src]="generated_offer.offer.provider.company_logo" />
+                    </div>
+                    <mat-card-title>{{generated_offer.offer.provider.name}}</mat-card-title>
+                    <mat-card-subtitle>{{generated_offer.offer.name}}</mat-card-subtitle>
+                    <div class="price-container">
+                        <div class="category">
+                            {{generated_offer.offer.category.name}}
+                        </div>
+                        <div class="price">
+                            {{generated_offer.price}} EGP
+                        </div>
+                    </div>
+                </mat-card-header>
+                <mat-divider *ngIf="generated_offer.offer.highlights.length"></mat-divider>
+                <mat-card-content class="card-content">
+                    <div class="highlights-container">
+                        <div class="highlight" *ngFor="let highlight of generated_offer.offer.highlights">
+                            <div class="highlight-title">
+                                {{highlight.title}}
+                            </div>
+                            <div>
+                                {{highlight.highlight_value}}
+                            </div>
+                        </div>
+
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </ng-template>
+    </div>
+</div>

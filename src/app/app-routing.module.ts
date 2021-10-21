@@ -19,14 +19,18 @@ const routes: Routes = [
     loadChildren: () => import('./about-us/about-us.module').then(m => m.AboutUsModule)
   },
   {
+    path: 'offers',
+    loadChildren: () => import('./offers/offers.module').then(m => m.OffersModule)
+  },
+  {
     path: 'products',
     loadChildren: () => import('./products/products.module').then(m => m.ProductsModule)
   },
-  { path: '',   redirectTo: '/home', pathMatch: 'full' },
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { useHash: true, relativeLinkResolution: 'legacy' })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { LoginComponent } from 'src/app/user/login/login.component';
 
 @Component({
@@ -9,9 +10,15 @@ import { LoginComponent } from 'src/app/user/login/login.component';
 })
 export class NavComponent implements OnInit {
 
-  constructor(private dialog: MatDialog) { }
+  constructor(
+    private router: Router,
+    private dialog: MatDialog) { }
 
   ngOnInit(): void {
+  }
+
+  goToHome(): void {
+    this.router.navigate(['/home']);
   }
 
   login(): void {

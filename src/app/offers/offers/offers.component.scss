@@ -1,0 +1,59 @@
+.card-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 80%;
+  .offer-card {
+    width: 100%;
+    margin: 20px;
+    .offer-card-image {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border-radius: 50%;
+      flex-shrink: 0;
+      object-fit: cover;
+    }
+    ::ng-deep .mat-card-header-text{
+      width: 70%;
+    }
+    .price-container{
+      display: flex;
+      flex-direction: column;
+      .price{
+        width: 10vw;
+        display: flex;
+        justify-content: flex-start;
+        color: #008BCC;
+        border: 2px solid;
+        background: #158BCC1D 0% 0% no-repeat padding-box;
+        border: 2px solid #008BCC;
+        opacity: 1;
+        border-radius: 5px;
+        padding: 5px;
+      }
+    }
+  }
+  .card-content {
+    margin: 20px;
+    .highlights-container {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      justify-content: flex-start;
+      .highlight {
+        width: 25%;
+        .highlight-title {
+          color: #534f9c;
+        }
+      }
+    }
+  }
+}
+.not-found{
+  margin: 20px;
+  p{
+    color:#7774B0
+  }
+}

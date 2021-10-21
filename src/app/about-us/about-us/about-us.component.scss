@@ -1,0 +1,39 @@
+$prim-color: #524F9C;
+.vision,
+.mision {
+  display: flex;
+  flex-direction: row;
+  .vision-text,
+  .mision-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    p {
+      font-size: medium;
+      letter-spacing: -0.96px;
+      color: #707070;
+      opacity: 1;
+    }
+  }
+  .header {
+    letter-spacing: -1.11px;
+    color: $prim-color;
+    opacity: 1;
+    font-size: xx-large;
+  }
+}
+.mail-subscribe{
+  background-color: $prim-color;
+  display: flex;
+  flex-direction: row;
+  color: #fff;
+  width: 100%;
+  .widget{
+    width: 50%;
+  }
+}
+.banner {
+  width: 40vw;
+  margin: 0px;
+}

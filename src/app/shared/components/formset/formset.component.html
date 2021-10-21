@@ -1,0 +1,13 @@
+<ng-container *ngFor="let formSet of formSets; let i = index">
+    <div class="sub-group-header">
+        <div class="question-header" *ngIf="i===0">{{question.new_sub_questions.title}}</div>
+        <button mat-stroked-button color="primary" (click)="addNew(i)">{{'Add ' + question.new_sub_questions.title}}</button>
+    </div>
+    <ng-container [formGroup]="form">
+        <ng-container [formArrayName]="formSet?.id">
+            <ng-container *ngFor="let _formGroup of arrays[i]?.controls ;let n=index">
+                <app-dynamic-form-question [isSubGroup]="true" [group]="question.new_sub_questions" [form]="_formGroup" [formArray]="arrays[i]" [formArrayIndex]="n"></app-dynamic-form-question>
+            </ng-container>
+        </ng-container>
+    </ng-container>
+</ng-container>

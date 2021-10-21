@@ -7,7 +7,7 @@
             </h1>
         </div>
         <div class="search-card">
-            <app-search [categories$]="categories$" [types]="types" (updateSearch)="search($event)"></app-search>
+            <app-search [page]="'home'" [categories$]="categories$" [types$]="types$ " (updateSearch)="search($event)"></app-search>
         </div>
     </div>
 </div>

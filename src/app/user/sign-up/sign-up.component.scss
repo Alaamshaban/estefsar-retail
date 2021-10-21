@@ -1,3 +1,13 @@
 .back-to-login {
   margin-top: 50px;
 }
+.auth-image{
+  width: 58vw;
+  height: 90vh;
+}
+$desktop: 1280px;
+@media only screen and (min-width: $desktop) {
+  .auth-image{
+    width: 49vw;
+  }
+}

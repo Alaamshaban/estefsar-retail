@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Store } from '@ngxs/store';
-import { VerifiyCode } from 'src/app/store/user/user.actions';
+import { Router } from '@angular/router';
+import { Actions, ofActionSuccessful, Store } from '@ngxs/store';
+import { SetUser, VerifiyCode } from 'src/app/store/user/user.actions';
 
 @Component({
   selector: 'app-verification',
@@ -14,6 +15,8 @@ export class VerificationComponent implements OnInit {
 
   constructor(
     private store: Store,
+    private router: Router,
+    private actions$: Actions,
     private fb: FormBuilder) { }
 
   get f() {
@@ -22,6 +25,10 @@ export class VerificationComponent implements OnInit {
 
   ngOnInit(): void {
     this.setForm();
+    this.actions$.pipe(ofActionSuccessful(VerifiyCode)).subscribe(res => {
+      this.router.navigate(['home']);
+      this.store.dispatch(new SetUser());
+    });
   }
 
   setForm(): void {
@@ -31,7 +38,7 @@ export class VerificationComponent implements OnInit {
   }
 
   verify(): void {
-    this.store.dispatch(new VerifiyCode(this.verificationForm.value));
+    this.store.dispatch(new VerifiyCode(this.verificationForm.value.code));
   }
 
 }

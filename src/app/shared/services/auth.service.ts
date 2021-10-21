@@ -1,8 +1,10 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { BaseURL } from '../base-url';
 import { UserModel, UserPayload, UserResponse } from '../models/user.model';
+import jwt_decode from 'jwt-decode';
+import { CookieService } from 'ngx-cookie-service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,14 +12,35 @@ import { UserModel, UserPayload, UserResponse } from '../models/user.model';
 export class AuthService {
   baseUrl = BaseURL;
 
-  constructor(private http: HttpClient) {
+  constructor(
+    private cookieService: CookieService,
+    private http: HttpClient) {
   }
-  createAccount(user: UserPayload): Observable<UserModel> {
-    return this.http.post<UserModel>(`${this.baseUrl}/base/users/`, user);
+
+  createAccount(user: UserPayload): Observable<UserResponse> {
+    user.phone_number = '+20' + user.phone_number;
+    return this.http.post<UserResponse>(`${this.baseUrl}/base/users/`, user);
   }
-  verifyMobileNumber(user: UserModel, code: string): Observable<any> {
+  verifyMobileNumber(user: UserModel, sessionInfo: string, code: string): Observable<any> {
     let params = new HttpParams();
     params = params.set('code', code).append('username', user.username);
-    return this.http.post(`${this.baseUrl}/base/users/verify-phone-number/`, user, { params });
+    const body = {
+      ...user,
+      sessionInfo: sessionInfo,
+      code: code
+    };
+    return this.http.post(`${this.baseUrl}/base/users/verify-phone-number/`, body, { params });
+  }
+
+  getLoggedInUser(jwt): Observable<UserModel> {
+    const decoded: UserModel = jwt_decode(jwt.access);
+    console.log(decoded)
+    this.cookieService.set('jwt', jwt.access);
+    this.cookieService.set('jwt_refresh', jwt.refresh);
+    return of(decoded);
+  }
+
+  login(user): Observable<any> {
+    return this.http.post(`${this.baseUrl}/base/auth/`, user);
   }
 }

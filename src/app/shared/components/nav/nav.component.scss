@@ -1,3 +1,29 @@
+$desktop: 1280px;
 .example-spacer {
+    flex: 0.8 1 auto;
+  }
+  .logo{
+    cursor: pointer;
+  }
+  .mat-toolbar-row, .mat-toolbar-single-row{
+    background-color:#fff !important;
+  }
+  .is-active{
+    text-decoration: underline;
+    text-decoration-style: solid;
+    text-decoration-color: #7A78B2;
+    text-decoration-thickness: 5px;
+  }
+  .login-btn,.btn-link,.btn-link:visited {color:#707070;}
+.get-quote{
+  color: #fff;
+  text-decoration: none;
+}
+.nav-btn{
+  margin: 0 10px !important;
+}
+@media only screen and (min-width: $desktop) {
+  .example-spacer {
     flex: 1 1 auto;
   }
+}

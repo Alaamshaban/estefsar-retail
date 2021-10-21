@@ -8,6 +8,10 @@ import { SharedModule } from './shared/shared.module';
 import { NgxsModule } from '@ngxs/store';
 import { UserState } from './store/user/user.state';
 import { QuestionsState } from './store/questions/question.state';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { TokenInterceptor } from './token.interceptor';
+import { AngularFireModule } from '@angular/fire';
+import { environment } from 'src/environments/environment';
 
 @NgModule({
   declarations: [
@@ -20,9 +24,10 @@ import { QuestionsState } from './store/questions/question.state';
     NgxsModule.forRoot([
       QuestionsState,
       UserState]),
-    SharedModule
+    SharedModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig)
   ],
-  providers: [],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

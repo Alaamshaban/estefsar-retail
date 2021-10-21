@@ -1,0 +1,86 @@
+$desktop: 1280px;
+.conatiner {
+  display: flex;
+  width: 99vw;
+  .news-card {
+    margin: 20px;
+    background-color: #fff;
+    color: #000;
+    width: 60vw;
+    img {
+      object-fit: cover;
+      width: 100%;
+      height: 50vh;
+    }
+  }
+  .grid-spinner {
+    display: flex;
+    justify-content: center;
+    margin-top: calc(50vh - 100px);
+    margin-left: 40rem;
+  }
+  .form {
+    width: 60%;
+    color: #fff;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
+      background-color: #d3d2e7;
+    }
+  }
+  .card-container {
+    display: flex;
+    flex-direction: row;
+    width: 62%;
+    mat-card {
+      width: 100%;
+    }
+    mat-card-title {
+      color: #524f9c;
+    }
+  }
+}
+
+@media only screen and (min-width: $desktop) {
+  .conatiner {
+    display: flex;
+    .news-card {
+      margin: 20px;
+      background-color: #fff;
+      color: #000;
+      width: 60vw;
+      img {
+        object-fit: cover;
+        width: 100%;
+        height: 50vh;
+      }
+    }
+    .grid-spinner {
+      display: flex;
+      justify-content: center;
+      margin-top: calc(50vh - 100px);
+      margin-left: 40rem;
+    }
+    .form {
+      width: 60%;
+      ::ng-deep .mat-form-field {
+        width: 32vw !important;
+      }
+    }
+    .card-container {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      width: 62%;
+      mat-card {
+        width: 38%;
+      }
+      mat-card-title {
+        color: #524f9c;
+      }
+    }
+  }
+}

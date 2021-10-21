@@ -1,0 +1,47 @@
+$desktop:1280px;
+.grid-spinner {
+  display: flex;
+  justify-content: center;
+  margin-top: calc(50vh - 100px);
+  margin-left: 40rem;
+}
+.card-container{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  mat-card-title{
+    color: #524F9C;
+  }
+}
+.news-letter{
+  background-color:#524F9C ;
+}
+    .news-card {
+        margin: 20px;
+        background-color: #fff;
+        color: #000;
+        width: 60vw;
+        img {
+          object-fit: fill;
+          width: 60vw;
+          height: 50vh;
+        }
+      }
+      @media only screen and (min-width: $desktop) {
+        .news-card{
+          width: auto;
+        }
+        .card-container{
+          display: flex;
+          flex-direction: row;
+          flex-wrap: wrap;
+          mat-card{
+            width: 27%;
+            img {
+              object-fit: cover;
+              min-width: 100%;
+              height: 30vh;
+            }
+          }
+        }
+      }

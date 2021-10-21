@@ -1,40 +1,19 @@
-.search-card{
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    position: absolute;
-    top: 50%;
-    left: 20%;
-    .app-search{
-      width: 80%;
-    }
-  }
-  .dynamic-form-conrainer{
-    top: 85%;
-    width: 92%;
-    display: flex;
-    justify-content: center;
-    position: absolute;
-    left: 10%;
-    right: 30%;
-  }
 
-  $desktop: 1280px;
-
-  @media only screen and (min-width: $desktop) {
-    .search-section {
-        position: relative;
-        text-align: center;
-        color: white;
-        .banner{
-            width: 100vw;
-            height: 60vh;
-            object-fit: cover;
-            opacity: 0.8;
-          }
-          .search-card{
-            top: 78%;
-            left: 0%;
-          }
-      }
+.dynamic-form-conrainer {
+  width: 92%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  .app-dynamic{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 93%;
   }
+}
+
+.grid-spinner {
+  display: flex;
+  justify-content: center;
+  margin-top: calc(50vh - 100px);
+}

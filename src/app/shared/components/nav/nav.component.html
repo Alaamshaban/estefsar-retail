@@ -1,22 +1,54 @@
-<mat-toolbar>
-<img src="assets/Group 1.svg"/>
-    <span class="example-spacer"></span>
-    <button mat-button>
-        <a [routerLink]="['/home']">
-            Home
-        </a></button>
-    <button mat-button>
-        <a [routerLink]="['/aboutus']">
-            About us</a></button>
-    <button mat-button>
-        <a [routerLink]="['/products']" [matMenuTriggerFor]="menu">Products</a></button>
-    <button mat-button>
-        <a [routerLink]="['/news']">News</a></button>
-    <button mat-button (click)="login()">Login</button>
-    <button mat-raised-button color="primary">Book a Demo</button>
-</mat-toolbar>
-
-
 <mat-menu #menu="matMenu">
-<div></div>
+    <app-products-menu></app-products-menu>
 </mat-menu>
+
+<mat-toolbar fxLayout="row">
+    <img class="logo" src="assets/logo.svg" (click)="goToHome()" />
+    <span class="example-spacer"></span>
+
+    <button mat-button fxHide.xs class="nav-btn">
+            <a class="btn-link" [routerLink]="['/home']" [routerLinkActive]="'is-active'">
+                Home
+            </a></button>
+    <button mat-button fxHide.xs class="nav-btn">
+            <a class="btn-link" [routerLink]="['/aboutus']" [routerLinkActive]="'is-active'">
+                About us</a></button>
+    <button mat-button fxHide.xs class="nav-btn">
+            <a class="btn-link" [matMenuTriggerFor]="menu">Products</a></button>
+    <button mat-button fxHide.xs class="nav-btn">
+            <a class="btn-link" [routerLink]="['/news']" [routerLinkActive]="'is-active'">News</a></button>
+    <button mat-button fxHide.xs class="nav-btn" (click)="login()">Login</button>
+    <button mat-raised-button color="primary" fxHide.xs>
+            <a class="get-quote" [routerLink]="['/home']">Get a quote
+                </a>
+        </button>
+
+
+    <button mat-icon-button [matMenuTriggerFor]="dropMenu" fxHide fxShow.xs>
+        <mat-icon>menu</mat-icon>
+    </button>
+    <mat-menu #dropMenu="matMenu">
+
+        <button mat-button>
+            <a class="btn-link" [routerLink]="['/home']">
+                Home
+            </a></button>
+        <mat-divider></mat-divider>
+        <button mat-button>
+            <a class="btn-link" [routerLink]="['/aboutus']">
+                About us</a></button>
+        <mat-divider></mat-divider>
+        <button mat-button>
+            <a class="btn-link" [routerLink]="['/products']" [matMenuTriggerFor]="menu">Products</a></button>
+        <mat-divider></mat-divider>
+        <button mat-button>
+            <a class="btn-link" [routerLink]="['/news']">News</a></button>
+        <mat-divider></mat-divider>
+        <button mat-button (click)="login()" class="login-btn">Login</button>
+        <mat-divider></mat-divider>
+        <button mat-raised-button color="primary">
+            <a class="get-quote" [routerLink]="['/home']">Get a quote</a></button>
+
+
+    </mat-menu>
+</mat-toolbar>

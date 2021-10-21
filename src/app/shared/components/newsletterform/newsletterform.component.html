@@ -1,0 +1,39 @@
+<div class="conatiner">
+    <div class="form">
+        <h1>
+            Subscribe to our Newsletter
+        </h1>
+        <span>Be the first to get exclusive offers and the latest news<br/> on our product eight to your inbox.</span>
+       <form [formGroup]="form">
+           <div>
+            <mat-form-field appearance="outline" >
+                <input matInput formControlName="mail" placeholder="Enter your mail here"/>
+            </mat-form-field>
+           </div>
+           <button mat-raised-button>Subscribe</button>
+       </form>
+    </div>
+    <!-- <div class="card-container">
+        <ng-container *ngFor="let n of news">
+            <mat-card class="news-card">
+                <ng-container *ngIf="n.image;else defaultImg">
+                  <img mat-card-image  [src]="n.image">
+                </ng-container>
+                <ng-template #defaultImg>
+                    <img src="assets/News/card-img.png" />
+                </ng-template>
+                <mat-card-header>
+                  <mat-card-title>{{n.title}}</mat-card-title>
+                  <mat-card-subtitle>{{n.created_at | date: 'dd/MM/yyyy'}}</mat-card-subtitle>
+              </mat-card-header>
+                <mat-card-content>
+                    <p>
+                        {{n.description}}
+                    </p>
+                </mat-card-content>
+            </mat-card>
+        </ng-container>
+    </div> -->
+</div>
+
+

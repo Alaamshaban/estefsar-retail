@@ -1,10 +1,10 @@
 export interface UserResponse {
     user: UserModel;
-    detail: string;
+    sessionInfo: string;
 }
 
 export interface UserModel {
-    id: string;
+    user_id: string;
     picture: string;
     first_name: string;
     last_name: string;

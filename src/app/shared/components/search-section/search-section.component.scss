@@ -1,0 +1,42 @@
+.search-card {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    .app-search{
+      width: 97vw;
+    }
+  }
+  .banner {
+    width: 96vw;
+    object-fit: cover;
+    opacity: 0.8;
+  }
+  .text {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    top: 80vh;
+    color: #707070;
+    .uppercase {
+      text-transform: uppercase;
+      color: #524f9c;
+    }
+  }
+  $desktop: 1280px;
+  @media only screen and (min-width: $desktop) {
+    .search-section {
+      text-align: center;
+      color: white;
+      .banner {
+        width: 100vw;
+        height: 30vh;
+        object-fit: contain;
+        opacity: 0.8;
+        margin: 0px;
+      }
+      .app-search{
+        width: 88%;
+      }
+    }
+  }

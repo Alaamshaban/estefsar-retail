@@ -1,0 +1,33 @@
+.menu-container {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  align-items: flex-start;
+  color: #524F9C;
+  .text h1{
+      margin: 20px;
+  }
+  .text span{
+    color: #000;
+  }
+  .product-portals {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 70%;
+    cursor: pointer;
+    .portal1,
+    .portal2 {
+      width: 75%;
+      img{
+          width: 90%;
+      }
+      a{
+        text-decoration: none;
+      }
+    }
+  }
+}
+::ng-deep .mat-menu-panel{
+    max-width: 100% !important;
+    }

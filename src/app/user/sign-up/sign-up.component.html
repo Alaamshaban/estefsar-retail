@@ -3,7 +3,7 @@
         <form [formGroup]="signUPForm">
             <div class="flex-container">
                 <div class="logo">
-                    <img src="assets/Group 1.svg" />
+                    <img src="assets/logo.svg" />
                 </div>
                 <div class="FormCell">
                     <mat-form-field>
@@ -11,17 +11,24 @@
                         <mat-error *ngIf="f.username.hasError('required') && (f.username.dirty || f.username.touched)">
                             Field is required.
                         </mat-error>
+                        <mat-error *ngIf="f.username.hasError('invalid_field') && (f.phone_number.dirty || f.phone_number.touched)">
+                            {{BeError}}.
+                        </mat-error>
                     </mat-form-field>
                 </div>
                 <div class="FormCell">
                     <mat-form-field>
-                        <input matInput type="text" formControlName="phone_number" placeholder="Phone number">
+                        <input matInput type="text" formControlName="phone_number" maxlength="10" placeholder="Phone number">
                         <mat-error *ngIf="f.phone_number.hasError('required') && (f.phone_number.dirty || f.phone_number.touched)">
                             Field is required.
                         </mat-error>
                         <mat-error *ngIf="f.phone_number.hasError('pattern') && (f.phone_number.dirty || f.phone_number.touched)">
                             Field format is incorrect.
                         </mat-error>
+                        <mat-error *ngIf="f.phone_number.hasError('invalid_field') && (f.phone_number.dirty || f.phone_number.touched)">
+                            {{BeError}}.
+                        </mat-error>
+                        <span matPrefix>+20&nbsp;</span>
                     </mat-form-field>
                 </div>
                 <div class="FormCell">
@@ -32,6 +39,9 @@
                         </mat-error>
                         <mat-error *ngIf="f.email.hasError('required') && (f.email.dirty || f.email.touched)">
                             Field is required.
+                        </mat-error>
+                        <mat-error *ngIf="f.email.hasError('invalid_field') && (f.phone_number.dirty || f.phone_number.touched)">
+                            {{BeError}}.
                         </mat-error>
                     </mat-form-field>
                 </div>
@@ -54,12 +64,12 @@
                         </mat-error>
                     </mat-form-field>
                 </div>
-                <button mat-raised-button color="primary" (click)="signUp()">Create account</button>
+                <button mat-raised-button color="primary" id="signup-btn">Create account</button>
                 <button class="back-to-login" mat-stroked-button color="primary" (click)="login()">Back to login</button>
             </div>
         </form>
     </div>
     <div class="bg-img">
-        
+        <img class="auth-image" src="assets/auth-image/Group 2219.png"/>
     </div>
 </div>

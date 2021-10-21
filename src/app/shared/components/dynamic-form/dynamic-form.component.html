@@ -4,7 +4,7 @@
             <app-dynamic-form-question [group]="group" [form]="group.form"></app-dynamic-form-question>
         </ng-container>
         <div class="submit-form">
-            <button class="submit-btn" mat-raised-button color="primary" (click)="submit()">Get Offers</button>
+            <button class="submit-btn" mat-raised-button color="primary" *ngIf="(groups$ |async).length" [disabled]="!dynamicFormGroup.valid" (click)="submitAnswers()">Get Offers</button>
         </div>
     </form>
 </ng-conatiner>

@@ -1,25 +1,31 @@
-import { Component, Input, OnChanges, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
-import { Question, QuestionGroup } from '../../models/question.model';
+import { Component, Input} from '@angular/core';
+import {FormGroup } from '@angular/forms';
+import { QuestionGroup } from '../../models/question.model';
 
 @Component({
   selector: 'app-dynamic-form-question',
   templateUrl: './dynamic-form-question.component.html',
   styleUrls: ['./dynamic-form-question.component.scss']
 })
-export class DynamicFormQuestionComponent {
+export class DynamicFormQuestionComponent{
 
   @Input() group: QuestionGroup;
+  @Input() form: FormGroup;
   @Input() isSubGroup: boolean;
-
+  @Input() formArray;
+  @Input() formArrayIndex;
   constructor() { }
 
   getChoices(choises: string): string[] {
     return choises.split(',');
   }
 
+  delete() {
+    this.formArray.removeAt(this.formArrayIndex);
+  }
+
   get f() {
-    return this.group.form.controls;
+    return this.form.controls;
   }
 
   onFileChange(event, ctrl): void {
